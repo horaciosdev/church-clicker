@@ -236,7 +236,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1873165750036737204, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 19
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1873165750036737204, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
       propertyPath: m_LocalPosition.z
@@ -302,6 +302,26 @@ PrefabInstance:
       propertyPath: incomePerSecond
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: factor
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: baseCost
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: description
+      value: "Recebe doa\xE7\xF5es do p\xFAblico e do governo, usa trabalho volunt\xE1rio."
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: upgradeName
+      value: ONG de Caridade
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: incomePerSecond
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 9121799332880570167, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
       propertyPath: factor
       value: 1.25
@@ -327,11 +347,22 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
---- !u!4 &63540987 stripped
-Transform:
+--- !u!224 &63540987 stripped
+RectTransform:
   m_CorrespondingSourceObject: {fileID: 1873165750036737204, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
   m_PrefabInstance: {fileID: 63540986}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &63540988 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+  m_PrefabInstance: {fileID: 63540986}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50ad9bace3fd00a46939bfa1d28f5e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &245424728
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,8 +469,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &402044705 stripped
-Transform:
+--- !u!224 &402044705 stripped
+RectTransform:
   m_CorrespondingSourceObject: {fileID: 1873165750036737204, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
   m_PrefabInstance: {fileID: 497054664}
   m_PrefabAsset: {fileID: 0}
@@ -580,13 +611,13 @@ RectTransform:
   m_AnchoredPosition: {x: 638.6692, y: 29}
   m_SizeDelta: {x: 599.2218, y: 1005.9}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!4 &410478758 stripped
-Transform:
+--- !u!224 &410478758 stripped
+RectTransform:
   m_CorrespondingSourceObject: {fileID: 1873165750036737204, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
   m_PrefabInstance: {fileID: 1603538781}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &493096712 stripped
-Transform:
+--- !u!224 &493096712 stripped
+RectTransform:
   m_CorrespondingSourceObject: {fileID: 1873165750036737204, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
   m_PrefabInstance: {fileID: 1735220911}
   m_PrefabAsset: {fileID: 0}
@@ -636,7 +667,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1873165750036737204, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -287
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1873165750036737204, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
       propertyPath: m_LocalPosition.z
@@ -702,6 +733,26 @@ PrefabInstance:
       propertyPath: incomePerSecond
       value: 2500
       objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: factor
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: baseCost
+      value: 1000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: description
+      value: "Forma novos l\xEDderes e legitima a doutrina para expans\xE3o."
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: upgradeName
+      value: "Universidade Teol\xF3gica"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: incomePerSecond
+      value: 2500
+      objectReference: {fileID: 0}
     - target: {fileID: 9121799332880570167, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
       propertyPath: factor
       value: 1.3
@@ -727,6 +778,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+--- !u!114 &497054665 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+  m_PrefabInstance: {fileID: 497054664}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50ad9bace3fd00a46939bfa1d28f5e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &605343994
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -903,8 +965,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!4 &721039682 stripped
-Transform:
+--- !u!224 &721039682 stripped
+RectTransform:
   m_CorrespondingSourceObject: {fileID: 1873165750036737204, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
   m_PrefabInstance: {fileID: 1413963092}
   m_PrefabAsset: {fileID: 0}
@@ -954,7 +1016,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1873165750036737204, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 120
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1873165750036737204, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1016,6 +1078,22 @@ PrefabInstance:
       propertyPath: incomePerSecond
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: baseCost
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: description
+      value: "Garante ofertas adicionais dos fi\xE9is."
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: upgradeName
+      value: Pastor Coach
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: incomePerSecond
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 9121799332880570167, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
       propertyPath: factor
       value: 1.2
@@ -1041,13 +1119,24 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
---- !u!4 &878945817 stripped
-Transform:
+--- !u!224 &878945817 stripped
+RectTransform:
   m_CorrespondingSourceObject: {fileID: 1873165750036737204, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
   m_PrefabInstance: {fileID: 878945816}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &886028468 stripped
-Transform:
+--- !u!114 &878945818 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+  m_PrefabInstance: {fileID: 878945816}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50ad9bace3fd00a46939bfa1d28f5e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!224 &886028468 stripped
+RectTransform:
   m_CorrespondingSourceObject: {fileID: 1873165750036737204, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
   m_PrefabInstance: {fileID: 1365974184}
   m_PrefabAsset: {fileID: 0}
@@ -1323,7 +1412,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1873165750036737204, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -186
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1873165750036737204, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1390,6 +1479,27 @@ PrefabInstance:
       propertyPath: incomePerSecond
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: factor
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: baseCost
+      value: 200000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: description
+      value: "Expande a f\xE9 pela TV, arrecada com f\xE9, medo e transfer\xEAncia
+        banc\xE1ria."
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: upgradeName
+      value: "Televis\xE3o Gospel"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: incomePerSecond
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 9121799332880570167, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
       propertyPath: factor
       value: 1.3
@@ -1416,6 +1526,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+--- !u!114 &1365974185 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+  m_PrefabInstance: {fileID: 1365974184}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50ad9bace3fd00a46939bfa1d28f5e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1413963092
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1462,7 +1583,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1873165750036737204, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -489
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1873165750036737204, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1528,6 +1649,26 @@ PrefabInstance:
       propertyPath: incomePerSecond
       value: 60000
       objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: factor
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: baseCost
+      value: 20000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: description
+      value: "Um imp\xE9rio religioso global que arrecada 24h por dia."
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: upgradeName
+      value: Mega Templo Mundial
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: incomePerSecond
+      value: 60000
+      objectReference: {fileID: 0}
     - target: {fileID: 9121799332880570167, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
       propertyPath: factor
       value: 1.3
@@ -1553,6 +1694,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+--- !u!114 &1413963093 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+  m_PrefabInstance: {fileID: 1413963092}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50ad9bace3fd00a46939bfa1d28f5e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1455004609
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1599,7 +1751,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1873165750036737204, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -83
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1873165750036737204, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1665,6 +1817,26 @@ PrefabInstance:
       propertyPath: incomePerSecond
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: factor
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: baseCost
+      value: 50000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: description
+      value: "Come\xE7a a lavar dinheiro do tr\xE1fico e do jogo do bicho."
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: upgradeName
+      value: Lavanderia Espiritual
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: incomePerSecond
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 9121799332880570167, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
       propertyPath: factor
       value: 1.25
@@ -1690,11 +1862,22 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
---- !u!4 &1455004610 stripped
-Transform:
+--- !u!224 &1455004610 stripped
+RectTransform:
   m_CorrespondingSourceObject: {fileID: 1873165750036737204, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
   m_PrefabInstance: {fileID: 1455004609}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1455004611 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+  m_PrefabInstance: {fileID: 1455004609}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50ad9bace3fd00a46939bfa1d28f5e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1506744817
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1741,7 +1924,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1873165750036737204, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 223
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1873165750036737204, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1803,6 +1986,22 @@ PrefabInstance:
       propertyPath: incomePerSecond
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: baseCost
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: description
+      value: Atrai mais crentes com panfletagem e apelos emocionais.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: upgradeName
+      value: Evangelista de Rua
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: incomePerSecond
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9121799332880570167, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
       propertyPath: factor
       value: 1.2
@@ -1828,6 +2027,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+--- !u!114 &1506744818 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+  m_PrefabInstance: {fileID: 1506744817}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50ad9bace3fd00a46939bfa1d28f5e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1603538781
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1874,7 +2084,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1873165750036737204, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -388
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1873165750036737204, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1940,6 +2150,26 @@ PrefabInstance:
       propertyPath: incomePerSecond
       value: 12000
       objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: factor
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: baseCost
+      value: 5000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: description
+      value: "Agora a religi\xE3o influencia leis, or\xE7amentos e verbas p\xFAblicas."
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: upgradeName
+      value: "Partido Teocr\xE1tico"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: incomePerSecond
+      value: 12000
+      objectReference: {fileID: 0}
     - target: {fileID: 9121799332880570167, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
       propertyPath: factor
       value: 1.3
@@ -1965,6 +2195,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+--- !u!114 &1603538782 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+  m_PrefabInstance: {fileID: 1603538781}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50ad9bace3fd00a46939bfa1d28f5e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1735220911
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2011,7 +2252,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1873165750036737204, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 324
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1873165750036737204, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2077,6 +2318,26 @@ PrefabInstance:
       propertyPath: incomePerSecond
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: factor
+      value: 1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: baseCost
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: description
+      value: "Trabalha de gra\xE7a e ainda contribui com o d\xEDzimo."
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: upgradeName
+      value: "Obreiro Volunt\xE1rio"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: incomePerSecond
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 9121799332880570167, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
       propertyPath: factor
       value: 1.15
@@ -2102,8 +2363,19 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
---- !u!4 &1839516167 stripped
-Transform:
+--- !u!114 &1735220912 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+  m_PrefabInstance: {fileID: 1735220911}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50ad9bace3fd00a46939bfa1d28f5e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!224 &1839516167 stripped
+RectTransform:
   m_CorrespondingSourceObject: {fileID: 1873165750036737204, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
   m_PrefabInstance: {fileID: 1630097855481413770}
   m_PrefabAsset: {fileID: 0}
@@ -2210,11 +2482,66 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!4 &1987551771 stripped
-Transform:
+--- !u!224 &1987551771 stripped
+RectTransform:
   m_CorrespondingSourceObject: {fileID: 1873165750036737204, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
   m_PrefabInstance: {fileID: 1506744817}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1988435165
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1988435167}
+  - component: {fileID: 1988435166}
+  m_Layer: 0
+  m_Name: SaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1988435166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988435165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4de5e0a51de17b4a867740cea68acf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgrades:
+  - {fileID: 1630097855481413771}
+  - {fileID: 1735220912}
+  - {fileID: 1506744818}
+  - {fileID: 878945818}
+  - {fileID: 63540988}
+  - {fileID: 1455004611}
+  - {fileID: 1365974185}
+  - {fileID: 497054665}
+  - {fileID: 1603538782}
+  - {fileID: 1413963093}
+--- !u!4 &1988435167
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988435165}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 944.36053, y: 607.694, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2072783224
 GameObject:
   m_ObjectHideFlags: 0
@@ -2395,7 +2722,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1873165750036737204, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 425
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1873165750036737204, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2453,6 +2780,18 @@ PrefabInstance:
       propertyPath: upgradeName
       value: Crente Fiel
       objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: factor
+      value: 1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: description
+      value: "Um fiel convertido paga o d\xEDzimo regularmente."
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+      propertyPath: upgradeName
+      value: Crente Fiel
+      objectReference: {fileID: 0}
     - target: {fileID: 9121799332880570167, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
       propertyPath: factor
       value: 1.15
@@ -2470,6 +2809,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+--- !u!114 &1630097855481413771 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8590383610289111129, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
+  m_PrefabInstance: {fileID: 1630097855481413770}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50ad9bace3fd00a46939bfa1d28f5e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2480,3 +2830,4 @@ SceneRoots:
   - {fileID: 605343994}
   - {fileID: 24717404}
   - {fileID: 1952990953}
+  - {fileID: 1988435167}

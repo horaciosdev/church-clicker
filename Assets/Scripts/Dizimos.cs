@@ -16,12 +16,17 @@ public class Dizimos : MonoBehaviour
     public void AddDizimo(float valor)
     {
         tootalDizimo += valor;
-        this.totalDizimoStr.text = ((int)this.tootalDizimo).ToString();
+        AtualizarTextoDizimo();
     }
 
     public void RemoveDizimo(int valor)
     {
         tootalDizimo -= valor;
-        this.totalDizimoStr.text = ((int)this.tootalDizimo).ToString();
+        AtualizarTextoDizimo();
+    }
+
+    public void AtualizarTextoDizimo()
+    {
+        this.totalDizimoStr.text = "D$ " + ((int)this.tootalDizimo).ToString();
     }
 }

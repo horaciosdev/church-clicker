@@ -77,6 +77,8 @@ public class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         // Atualiza o texto
         this.upgradeQtdTMP.text = quantity.ToString();
         upgradeCostTMP.text = "$ " + getCurrentCost().ToString();
+
+        SaveManager.instance.SaveGame();
     }
 
     // Implementação correta de OnPointerEnter
@@ -109,7 +111,7 @@ public class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
     }
 
-    private int getCurrentCost()
+    public int getCurrentCost()
     {
         return (int)(baseCost * Mathf.Pow(factor, quantity));
     }
