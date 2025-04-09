@@ -6,6 +6,7 @@ public class SaveManager : MonoBehaviour
     // Chaves para identificar os valores salvos no PlayerPrefs
     private const string TOTAL_DIZIMO_KEY = "TotalDizimo";
     private const string UPGRADE_QUANTITY_PREFIX = "UpgradeQuantity_"; // Usaremos um prefixo para salvar as quantidades dos upgrades
+    private const string LAST_SAVE_TIME_KEY = "LastSaveTime";
 
     // Referência ao script Dizimos para acessar e modificar o total de dizimo
     private Dizimos dizimos;
@@ -22,11 +23,16 @@ public class SaveManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // Mantém o objeto mesmo ao trocar de cenas
+
+            // Garante que o GameObject está na raiz da hierarquia
+            transform.SetParent(null, false); // Substitui transform.parent = null
+
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
+            return;
         }
 
         // Encontra o script Dizimos
@@ -62,6 +68,10 @@ public class SaveManager : MonoBehaviour
             }
         }
 
+        // Salva o timestamp atual
+        string currentTime = System.DateTime.UtcNow.ToBinary().ToString();
+        PlayerPrefs.SetString(LAST_SAVE_TIME_KEY, currentTime);
+
         // É importante chamar Save() para garantir que os dados sejam escritos no disco
         PlayerPrefs.Save();
 
@@ -71,28 +81,67 @@ public class SaveManager : MonoBehaviour
     // Função para carregar os dados do jogo
     public void LoadGame()
     {
-        // Carrega o total de dizimo
-        if (dizimos != null)
-        {
-            dizimos.tootalDizimo = PlayerPrefs.GetFloat(TOTAL_DIZIMO_KEY, 0f);
-            dizimos.AtualizarTextoDizimo(); // Adicione essa função no seu script Dizimos para atualizar o texto da UI
-        }
+        // 1. Primeiro carregamos o timestamp do último save
+        string lastSaveTimeString = PlayerPrefs.GetString(LAST_SAVE_TIME_KEY, string.Empty);
+        float offlineGains = 0f;
 
-        // Carrega a quantidade de cada upgrade
-        if (upgrades != null)
+        // 2. Calculamos o tempo offline
+        if (!string.IsNullOrEmpty(lastSaveTimeString))
         {
-            foreach (Upgrade upgrade in upgrades)
+            System.DateTime lastSaveTime = System.DateTime.FromBinary(long.Parse(lastSaveTimeString));
+            System.DateTime currentTime = System.DateTime.UtcNow;
+            double secondsElapsed = (currentTime - lastSaveTime).TotalSeconds;
+
+            // Limita o tempo offline máximo para 24 horas (86400 segundos)
+            secondsElapsed = Mathf.Min((float)secondsElapsed, 86400f);
+
+            // 3. Carregamos os upgrades primeiro, pois precisamos deles para calcular os ganhos offline
+            if (upgrades != null)
             {
-                upgrade.quantity = PlayerPrefs.GetInt(UPGRADE_QUANTITY_PREFIX + upgrade.upgradeName, 0);
-                upgrade.upgradeQtdTMP.text = upgrade.quantity.ToString(); // Atualiza o texto da quantidade do upgrade
-                upgrade.upgradeCostTMP.text = "$ " + upgrade.getCurrentCost().ToString(); // Atualiza o custo do upgrade ao carregar
-                // Você pode precisar fazer outras atualizações na UI do upgrade aqui, se necessário
+                foreach (Upgrade upgrade in upgrades)
+                {
+                    // Carrega a quantidade de cada upgrade
+                    upgrade.quantity = PlayerPrefs.GetInt(UPGRADE_QUANTITY_PREFIX + upgrade.upgradeName, 0);
+
+                    // Calcula os ganhos offline deste upgrade
+                    float upgradeProduction = upgrade.GetProductionPerSecond() * upgrade.quantity;
+                    offlineGains += upgradeProduction * (float)secondsElapsed;
+
+                    // Atualiza a UI do upgrade
+                    upgrade.upgradeQtdTMP.text = upgrade.quantity.ToString();
+                    upgrade.upgradeCostTMP.text = "$ " + upgrade.GetCurrentCost().ToString();
+                }
             }
         }
 
-        StartCoroutine(AutomaticSave()); // Inicia o salvamento automático
+        // 4. Carregamos e atualizamos o total de dízimo
+        if (dizimos != null)
+        {
+            // Carrega o valor base salvo
+            dizimos.tootalDizimo = PlayerPrefs.GetFloat(TOTAL_DIZIMO_KEY, 0f);
+
+            // Adiciona os ganhos offline
+            if (offlineGains > 0)
+            {
+                dizimos.tootalDizimo += offlineGains;
+                ShowOfflineGainsMessage(offlineGains); // Você precisa criar esta função para mostrar a UI
+            }
+
+            // Atualiza a UI
+            dizimos.AtualizarTextoDizimo();
+        }
+
+        // 5. Inicia o salvamento automático
+        StartCoroutine(AutomaticSave());
 
         Debug.Log("Jogo Carregado!");
+    }
+
+    // Função auxiliar para mostrar mensagem de ganhos offline
+    private void ShowOfflineGainsMessage(float gains)
+    {
+        // Aqui você pode implementar uma UI para mostrar os ganhos offline
+        Debug.Log($"Bem-vindo de volta! Você ganhou ${gains:F2} enquanto esteve fora!");
     }
 
     // Função para resetar os dados salvos (útil para testes)
@@ -114,7 +163,7 @@ public class SaveManager : MonoBehaviour
             {
                 upgrade.quantity = 0;
                 upgrade.upgradeQtdTMP.text = "0";
-                upgrade.upgradeCostTMP.text = "$ " + upgrade.getCurrentCost().ToString();
+                upgrade.upgradeCostTMP.text = "$ " + upgrade.GetCurrentCost().ToString();
             }
         }
 

@@ -38,7 +38,7 @@ public class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             originalColor = upgradeImage.color; // Salve a cor original
         }
 
-        int currentCost = getCurrentCost();
+        int currentCost = GetCurrentCost();
 
         upgradeNameTMP.text = upgradeName;
         upgradeDescriptionTMP.text = description;
@@ -51,7 +51,7 @@ public class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     void Update()
     {
-        int currentCost = getCurrentCost();
+        int currentCost = GetCurrentCost();
 
         // Verifica se o jogador tem dinheiro suficiente para comprar o upgrade
         if (dizimos.GetDizimo() < currentCost)
@@ -66,7 +66,7 @@ public class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void Click()
     {
-        int currentCost = getCurrentCost();
+        int currentCost = GetCurrentCost();
 
         if (dizimos.GetDizimo() < currentCost) return;
 
@@ -76,7 +76,7 @@ public class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         // Atualiza o texto
         this.upgradeQtdTMP.text = quantity.ToString();
-        upgradeCostTMP.text = "$ " + getCurrentCost().ToString();
+        upgradeCostTMP.text = "$ " + GetCurrentCost().ToString();
 
         SaveManager.instance.SaveGame();
     }
@@ -104,15 +104,20 @@ public class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         while (true)
         {
             yield return new WaitForSeconds(1);
-            if(quantity > 0)
+            if (quantity > 0)
             {
-                dizimos.AddDizimo(incomePerSecond * quantity);
+                dizimos.AddDizimo(GetProductionPerSecond());
             }
         }
     }
 
-    public int getCurrentCost()
+    public int GetCurrentCost()
     {
         return (int)(baseCost * Mathf.Pow(factor, quantity));
+    }
+
+    public float GetProductionPerSecond()
+    {
+        return incomePerSecond * quantity;
     }
 }
