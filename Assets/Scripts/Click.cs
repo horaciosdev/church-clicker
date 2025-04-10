@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 public class Click : MonoBehaviour
 {
     private Animator objectAnimator;
