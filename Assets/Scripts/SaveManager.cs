@@ -75,7 +75,7 @@ public class SaveManager : MonoBehaviour
         // É importante chamar Save() para garantir que os dados sejam escritos no disco
         PlayerPrefs.Save();
 
-        Debug.Log("Jogo Salvo!");
+        ToastCreator.CreateToast("Jogo Salvo!");
     }
 
     // Função para carregar os dados do jogo
@@ -134,14 +134,14 @@ public class SaveManager : MonoBehaviour
         // 5. Inicia o salvamento automático
         StartCoroutine(AutomaticSave());
 
-        Debug.Log("Jogo Carregado!");
+        ToastCreator.CreateToast("Jogo Carregado!");
     }
 
     // Função auxiliar para mostrar mensagem de ganhos offline
     private void ShowOfflineGainsMessage(float gains)
     {
         // Aqui você pode implementar uma UI para mostrar os ganhos offline
-        Debug.Log($"Bem-vindo de volta! Você ganhou ${gains:F2} enquanto esteve fora!");
+        ToastCreator.CreateToast($"Bem-vindo de volta! Você ganhou ${gains:F2} enquanto esteve fora!");
     }
 
     // Função para resetar os dados salvos (útil para testes)
@@ -168,7 +168,7 @@ public class SaveManager : MonoBehaviour
         }
 
         SaveGame(); // Salva os valores resetados
-        Debug.Log("Save Resetado!");
+        ToastCreator.CreateToast("Save Resetado!");
         LoadGame(); // Recarrega os valores padrão (já definidos acima)
     }
 
