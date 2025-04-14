@@ -79,6 +79,7 @@ public class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         upgradeCostTMP.text = "$ " + GetCurrentCost().ToString();
 
         SaveManager.instance.SaveGame();
+        ToastCreator.CreateToast("Novo upgrade adquirido!", "top-center");
     }
 
     // Implementação correta de OnPointerEnter

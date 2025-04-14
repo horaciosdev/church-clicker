@@ -607,7 +607,7 @@ GameObject:
   - component: {fileID: 405318434}
   - component: {fileID: 405318436}
   m_Layer: 5
-  m_Name: Dizimos
+  m_Name: Money
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -646,7 +646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.85882354}
+  m_Color: {r: 0, g: 0.5803922, b: 0, a: 0.85882354}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -683,8 +683,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0194d3dd0c3a643865c6ad9ac15e79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tootalDizimo: 0
-  totalDizimoStr: {fileID: 2072783226}
+  tootalMoney: 0
+  totalMoneyStr: {fileID: 2072783226}
 --- !u!1 &409717644
 GameObject:
   m_ObjectHideFlags: 0
@@ -819,8 +819,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 28
+  m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1223,6 +1223,37 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1873165750036737204, guid: f8a6d91b311da4f43bbfc3a5bbc85a74, type: 3}
   m_PrefabInstance: {fileID: 1413963092}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &764774310
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 764774311}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &764774311
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764774310}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 249, y: 1001, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &878945816
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2728,8 +2759,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -820, y: 153}
-  m_SizeDelta: {x: 244.4012, y: 63.5419}
+  m_AnchoredPosition: {x: -853.2644, y: 144.79004}
+  m_SizeDelta: {x: 177.8725, y: 47.122}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1859666316
 MonoBehaviour:
@@ -2773,7 +2804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.7607843}
+  m_Color: {r: 1, g: 0, b: 0, a: 0.92941177}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3269,3 +3300,4 @@ SceneRoots:
   - {fileID: 24717404}
   - {fileID: 1988435167}
   - {fileID: 1952990953}
+  - {fileID: 764774311}

@@ -96,6 +96,18 @@ public static class ToastCreator
                 toastRect.anchoredPosition = new Vector2(-100f, 50f);
                 break;
 
+            case "top-center":
+                toastRect.anchorMin = new Vector2(0.5f, 1f);
+                toastRect.anchorMax = new Vector2(0.5f, 1f);
+                toastRect.anchoredPosition = new Vector2(0f, -50f);
+                break;
+
+            case "bottom-center":
+                toastRect.anchorMin = new Vector2(0.5f, 0f);
+                toastRect.anchorMax = new Vector2(0.5f, 0f);
+                toastRect.anchoredPosition = new Vector2(0f, 50f);
+                break;
+
             case "center":
             default:
                 toastRect.anchorMin = new Vector2(0.5f, 0.5f);
