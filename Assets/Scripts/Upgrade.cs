@@ -21,7 +21,7 @@ public class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public GameObject disableOverlayImage;
 
-    private Dizimos dizimos;
+    private Money money;
 
     private Color originalColor; // Para armazenar a cor original da imagem
     public Color hoverColor;
@@ -29,8 +29,8 @@ public class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     void Start()
     {
-        GameObject gameObject = GameObject.Find("Dizimos");
-        dizimos = gameObject.GetComponent<Dizimos>();
+        GameObject gameObject = GameObject.Find("Money");
+        money = gameObject.GetComponent<Money>();
 
         upgradeImage = GetComponent<Image>(); // Obtenha a referência ao componente Image
         if (upgradeImage != null)
@@ -54,7 +54,7 @@ public class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         int currentCost = GetCurrentCost();
 
         // Verifica se o jogador tem dinheiro suficiente para comprar o upgrade
-        if (dizimos.GetDizimo() < currentCost)
+        if (money.GetMoney() < currentCost)
         {
             disableOverlayImage.SetActive(true);
         }
@@ -68,9 +68,9 @@ public class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         int currentCost = GetCurrentCost();
 
-        if (dizimos.GetDizimo() < currentCost) return;
+        if (money.GetMoney() < currentCost) return;
 
-        dizimos.RemoveDizimo(currentCost);
+        money.RemoveMoney(currentCost);
 
         quantity++;
 
@@ -106,7 +106,7 @@ public class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             yield return new WaitForSeconds(1);
             if (quantity > 0)
             {
-                dizimos.AddDizimo(GetProductionPerSecond());
+                money.AddMoney(GetProductionPerSecond());
             }
         }
     }

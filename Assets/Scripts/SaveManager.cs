@@ -4,12 +4,12 @@ using UnityEngine;
 public class SaveManager : MonoBehaviour
 {
     // Chaves para identificar os valores salvos no PlayerPrefs
-    private const string TOTAL_DIZIMO_KEY = "TotalDizimo";
+    private const string TOTAL_MONEY_KEY = "TotalMoney";
     private const string UPGRADE_QUANTITY_PREFIX = "UpgradeQuantity_"; // Usaremos um prefixo para salvar as quantidades dos upgrades
     private const string LAST_SAVE_TIME_KEY = "LastSaveTime";
 
-    // Referência ao script Dizimos para acessar e modificar o total de dizimo
-    private Dizimos dizimos;
+    // Referência ao script Money para acessar e modificar o total de money
+    private Money money;
 
     // Referência aos scripts de Upgrade (você precisará configurar isso no Inspector)
     public Upgrade[] upgrades;
@@ -35,15 +35,15 @@ public class SaveManager : MonoBehaviour
             return;
         }
 
-        // Encontra o script Dizimos
-        GameObject dizimosObject = GameObject.Find("Dizimos");
-        if (dizimosObject != null)
+        // Encontra o script Money
+        GameObject moneyObject = GameObject.Find("Money");
+        if (moneyObject != null)
         {
-            dizimos = dizimosObject.GetComponent<Dizimos>();
+            money = moneyObject.GetComponent<Money>();
         }
         else
         {
-            Debug.LogError("Objeto 'Dizimos' não encontrado na cena!");
+            Debug.LogError("Objeto 'Money' não encontrado na cena!");
         }
 
         // Carrega os dados do jogo ao iniciar
@@ -53,10 +53,10 @@ public class SaveManager : MonoBehaviour
     // Função para salvar os dados do jogo
     public void SaveGame()
     {
-        // Salva o total de dizimo
-        if (dizimos != null)
+        // Salva o total de money
+        if (money != null)
         {
-            PlayerPrefs.SetFloat(TOTAL_DIZIMO_KEY, dizimos.tootalDizimo);
+            PlayerPrefs.SetFloat(TOTAL_MONEY_KEY, money.tootalMoney);
         }
 
         // Salva a quantidade de cada upgrade
@@ -75,7 +75,7 @@ public class SaveManager : MonoBehaviour
         // É importante chamar Save() para garantir que os dados sejam escritos no disco
         PlayerPrefs.Save();
 
-        ToastCreator.CreateToast("Jogo Salvo!");
+        ToastCreator.CreateToast("Jogo Salvo!", "bottom-left");
     }
 
     // Função para carregar os dados do jogo
@@ -115,33 +115,33 @@ public class SaveManager : MonoBehaviour
         }
 
         // 4. Carregamos e atualizamos o total de dízimo
-        if (dizimos != null)
+        if (money != null)
         {
             // Carrega o valor base salvo
-            dizimos.tootalDizimo = PlayerPrefs.GetFloat(TOTAL_DIZIMO_KEY, 0f);
+            money.tootalMoney = PlayerPrefs.GetFloat(TOTAL_MONEY_KEY, 0f);
 
             // Adiciona os ganhos offline
             if (offlineGains > 0)
             {
-                dizimos.tootalDizimo += offlineGains;
+                money.tootalMoney += offlineGains;
                 ShowOfflineGainsMessage(offlineGains); // Você precisa criar esta função para mostrar a UI
             }
 
             // Atualiza a UI
-            dizimos.AtualizarTextoDizimo();
+            money.UpdateMoneyString();
         }
 
         // 5. Inicia o salvamento automático
         StartCoroutine(AutomaticSave());
 
-        ToastCreator.CreateToast("Jogo Carregado!");
+        ToastCreator.CreateToast("Jogo Carregado!", "bottom-left");
     }
 
     // Função auxiliar para mostrar mensagem de ganhos offline
     private void ShowOfflineGainsMessage(float gains)
     {
         // Aqui você pode implementar uma UI para mostrar os ganhos offline
-        ToastCreator.CreateToast($"Bem-vindo de volta! Você ganhou ${gains:F2} enquanto esteve fora!");
+        ToastCreator.CreateToast($"Bem-vindo de volta! \n Você ganhou: \n ${gains:F2}", "top-left", 2f);
     }
 
     // Função para resetar os dados salvos (útil para testes)
@@ -149,11 +149,11 @@ public class SaveManager : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
 
-        // Redefine os valores no script Dizimos
-        if (dizimos != null)
+        // Redefine os valores no script Money
+        if (money != null)
         {
-            dizimos.tootalDizimo = 0f;
-            dizimos.AtualizarTextoDizimo();
+            money.tootalMoney = 0f;
+            money.UpdateMoneyString();
         }
 
         // Redefine as quantidades dos upgrades
@@ -168,7 +168,7 @@ public class SaveManager : MonoBehaviour
         }
 
         SaveGame(); // Salva os valores resetados
-        ToastCreator.CreateToast("Save Resetado!");
+        ToastCreator.CreateToast("Save Resetado!", "bottom-left");
         LoadGame(); // Recarrega os valores padrão (já definidos acima)
     }
 

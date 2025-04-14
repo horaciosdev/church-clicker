@@ -3,112 +3,92 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(CanvasGroup))]
 public class Toast : MonoBehaviour
 {
-    private Image toastImage;
-    private float fadeOutDuration = 1f;
-    private float moveUpDuration = 0.5f; // Duração da animação de subir (ajuste conforme necessário)
-    private float moveUpAmount = 150f; // Quantidade que o toast subirá no eixo Y
-    private float scaleDownDuration = 1f;
-    private float minScale = 0.01f;
-    private float startDelay = 0.1f;
+    public float displayDuration = 2f;
+    public float moveDistance = 100f;
+    public float animationDuration = 0.4f;
 
-    // Start is called before the first frame update
+    private CanvasGroup canvasGroup;
+    private RectTransform rectTransform;
+    private Vector3 initialPosition;
+    private bool moveUp;
+
+    void Awake()
+    {
+        canvasGroup = GetComponent<CanvasGroup>();
+        rectTransform = GetComponent<RectTransform>();
+    }
+
     void Start()
     {
-        toastImage = GetComponent<Image>();
+        // Decide se o toast deve subir ou descer com base na posição vertical
+        moveUp = rectTransform.anchorMin.y < 0.5f;
+        initialPosition = rectTransform.anchoredPosition;
+
+        // Começa visível
+        canvasGroup.alpha = 1f;
+        transform.localScale = Vector3.one;
+
         StartCoroutine(AnimateToastSequence());
     }
 
-    public void SetMessage(string message)
+    public void SetMessage(string message, float duration)
     {
-        // Procura pelo objeto filho chamado "ToastMessage"
-        Transform toastMessageTransform = transform.Find("ToastMessage");
-        if (toastMessageTransform != null)
+        displayDuration = duration;
+
+        var messageObj = transform.Find("ToastMessage");
+        if (messageObj != null && messageObj.TryGetComponent(out TextMeshProUGUI text))
         {
-            // Tenta obter o componente TextMeshPro
-            TextMeshProUGUI toastMessage = toastMessageTransform.GetComponent<TextMeshProUGUI>();
-            if (toastMessage != null)
-            {
-                toastMessage.text = message; // Define a mensagem
-            }
-            else
-            {
-                Debug.LogError("O componente TextMeshPro não foi encontrado no objeto 'ToastMessage'.");
-            }
+            text.text = message;
         }
         else
         {
-            Debug.LogError("O objeto filho 'ToastMessage' não foi encontrado no prefab do Toast.");
+            Debug.LogError("TextMeshProUGUI não encontrado no filho 'ToastMessage'");
         }
     }
 
     IEnumerator AnimateToastSequence()
     {
-        // Inicia a animação de subir e espera que ela termine
-        yield return StartCoroutine(MoveUpAnimation());
+        // Move e exibe
+        yield return StartCoroutine(MoveAndFade(visible: true));
 
-        // Espera o delay antes de iniciar o desaparecimento e a diminuição
-        yield return new WaitForSeconds(startDelay);
+        // Espera
+        yield return new WaitForSeconds(displayDuration);
 
-        // Inicia a animação de desaparecer e diminuir
-        yield return StartCoroutine(FadeOutAndScaleDownAnimation());
+        // Move e desaparece
+        yield return StartCoroutine(MoveAndFade(visible: false));
 
-        // Destrói o objeto após a animação completa
         Destroy(gameObject);
     }
 
-    IEnumerator MoveUpAnimation()
+    IEnumerator MoveAndFade(bool visible)
     {
         float timer = 0f;
-        Vector3 initialPosition = transform.localPosition;
+        float startAlpha = visible ? 0f : 1f;
+        float endAlpha = visible ? 1f : 0f;
 
-        while (timer < moveUpDuration)
+        Vector3 startPos = initialPosition + (moveUp ? Vector3.down : Vector3.up) * (visible ? moveDistance : 0f);
+        Vector3 endPos = initialPosition + (moveUp ? Vector3.up : Vector3.down) * (visible ? 0f : moveDistance);
+
+        Vector3 startScale = visible ? Vector3.zero : Vector3.one;
+        Vector3 endScale = visible ? Vector3.one : Vector3.zero;
+
+        while (timer < animationDuration)
         {
             timer += Time.deltaTime;
-            float progress = Mathf.Clamp01(timer / moveUpDuration);
-            float yOffset = Mathf.Lerp(0f, moveUpAmount, progress);
-            transform.localPosition = initialPosition + new Vector3(0f, yOffset, 0f);
-            yield return null;
-        }
+            float t = Mathf.Clamp01(timer / animationDuration);
 
-        // Garante que a posição final da subida seja atingida
-        transform.localPosition = initialPosition + new Vector3(0f, moveUpAmount, 0f);
-    }
-
-    IEnumerator FadeOutAndScaleDownAnimation()
-    {
-        float timer = 0f;
-        Vector3 initialScale = transform.localScale;
-        float initialAlpha = (toastImage != null) ? toastImage.color.a : 1f;
-
-        while (timer < Mathf.Max(fadeOutDuration, scaleDownDuration) && transform.localScale.x > minScale)
-        {
-            timer += Time.deltaTime;
-            float progress = Mathf.Clamp01(timer / Mathf.Max(fadeOutDuration, scaleDownDuration));
-
-            // Interpolação para a escala
-            float scaleFactor = Mathf.Lerp(1f, 0f, progress);
-            transform.localScale = initialScale * scaleFactor;
-
-            // Interpolação para o alpha
-            if (toastImage != null)
-            {
-                Color currentColor = toastImage.color;
-                currentColor.a = Mathf.Lerp(initialAlpha, 0f, progress);
-                toastImage.color = currentColor;
-            }
+            rectTransform.anchoredPosition = Vector3.Lerp(startPos, endPos, t);
+            transform.localScale = Vector3.Lerp(startScale, endScale, t);
+            canvasGroup.alpha = Mathf.Lerp(startAlpha, endAlpha, t);
 
             yield return null;
         }
 
-        // Garante que a escala final seja zero e o alpha seja zero
-        transform.localScale = Vector3.zero;
-        if (toastImage != null)
-        {
-            Color finalColor = toastImage.color;
-            finalColor.a = 0f;
-            toastImage.color = finalColor;
-        }
+        rectTransform.anchoredPosition = endPos;
+        transform.localScale = endScale;
+        canvasGroup.alpha = endAlpha;
     }
 }

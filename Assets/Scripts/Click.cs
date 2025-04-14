@@ -3,19 +3,19 @@ using UnityEngine;
 public class Click : MonoBehaviour
 {
     private Animator objectAnimator;
-    private Dizimos dizimos;
+    private Money money;
 
     void Start()
     {
         objectAnimator = GetComponent<Animator>();
 
-        GameObject gameObject = GameObject.Find("Dizimos");
-        dizimos = gameObject.GetComponent<Dizimos>();
+        GameObject gameObject = GameObject.Find("Money");
+        money = gameObject.GetComponent<Money>();
     }
 
     void OnMouseDown()
     {
         objectAnimator.Play("ChurchClick", 0, 0f);
-        dizimos.AddDizimo(1);
+        money.AddMoney(1);
     }
 }

@@ -67,7 +67,7 @@ MonoBehaviour:
   upgradeQtdTMP: {fileID: 8155822643410040740}
   upgradeCostTMP: {fileID: 1984857885504542836}
   disableOverlayImage: {fileID: 8062854504278701688}
-  hoverColor: {r: 0.245105, g: 0.33962262, b: 0.2569197, a: 0.4745098}
+  hoverColor: {r: 0.7830189, g: 0.7830189, b: 0.114498034, a: 1}
 --- !u!222 &3828654346317022835
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.8627451}
+  m_Color: {r: 0.252314, g: 0.509434, b: 0.2698449, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -501,7 +501,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
