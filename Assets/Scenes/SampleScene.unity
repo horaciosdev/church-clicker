@@ -400,7 +400,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 91.04541, y: -185.79999}
+  m_AnchoredPosition: {x: 75.9, y: -138}
   m_SizeDelta: {x: 137.28668, y: 63.54187}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &230585722
@@ -630,8 +630,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 249, y: -79}
-  m_SizeDelta: {x: 452.4398, y: 100}
+  m_AnchoredPosition: {x: 277.89465, y: -49.759766}
+  m_SizeDelta: {x: 540.4901, y: 81.4657}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &405318434
 MonoBehaviour:
@@ -683,8 +683,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0194d3dd0c3a643865c6ad9ac15e79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tootalMoney: 0
+  totalMoney: 0
   totalMoneyStr: {fileID: 2072783226}
+  smoothTime: 0.3
 --- !u!1 &409717644
 GameObject:
   m_ObjectHideFlags: 0
@@ -1565,8 +1566,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.104, y: 4.4569373, z: 4.9999995}
-  m_Center: {x: 0, y: 0.871531, z: -2.4999998}
+  m_Size: {x: 4.104, y: 4.4569373, z: 3.6736457}
+  m_Center: {x: 0, y: 0.87154436, z: -1.8368514}
 --- !u!95 &1185705067
 Animator:
   serializedVersion: 5
@@ -3056,10 +3057,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 405318433}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 235.14377, y: -50}
-  m_SizeDelta: {x: 434.5922, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 8.769989, y: -0.11399841}
+  m_SizeDelta: {x: -18.150024, y: 0.22799683}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2072783226
 MonoBehaviour:

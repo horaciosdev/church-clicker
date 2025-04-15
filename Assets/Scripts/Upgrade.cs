@@ -6,10 +6,10 @@ using UnityEngine.EventSystems;
 
 public class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public float baseCost = 10f;
-    public float factor = 1.5f;
+    public double baseCost = 10.0;
+    public double factor = 1.5;
     public int quantity = 0;
-    public float incomePerSecond = 0.1f;
+    public double incomePerSecond = 0.1;
 
     public string upgradeName = "Upgrade";
     public string description = "Upgrade description!";
@@ -23,27 +23,25 @@ public class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     private Money money;
 
-    private Color originalColor; // Para armazenar a cor original da imagem
+    private Color originalColor;
     public Color hoverColor;
-    private Image upgradeImage; // Referência para o componente Image
+    private Image upgradeImage;
 
     void Start()
     {
-        GameObject gameObject = GameObject.Find("Money");
-        money = gameObject.GetComponent<Money>();
+        GameObject moneyObject = GameObject.Find("Money");
+        money = moneyObject.GetComponent<Money>();
 
-        upgradeImage = GetComponent<Image>(); // Obtenha a referência ao componente Image
+        upgradeImage = GetComponent<Image>();
         if (upgradeImage != null)
         {
-            originalColor = upgradeImage.color; // Salve a cor original
+            originalColor = upgradeImage.color;
         }
-
-        int currentCost = GetCurrentCost();
 
         upgradeNameTMP.text = upgradeName;
         upgradeDescriptionTMP.text = description;
 
-        upgradeCostTMP.text = "$ " + currentCost.ToString();
+        upgradeCostTMP.text = money.FormatMoney(GetCurrentCost());
         upgradeQtdTMP.text = quantity.ToString();
 
         StartCoroutine(StartGenerate());
@@ -51,9 +49,8 @@ public class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     void Update()
     {
-        int currentCost = GetCurrentCost();
+        double currentCost = GetCurrentCost();
 
-        // Verifica se o jogador tem dinheiro suficiente para comprar o upgrade
         if (money.GetMoney() < currentCost)
         {
             disableOverlayImage.SetActive(true);
@@ -66,23 +63,21 @@ public class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void Click()
     {
-        int currentCost = GetCurrentCost();
+        double currentCost = GetCurrentCost();
 
         if (money.GetMoney() < currentCost) return;
 
         money.RemoveMoney(currentCost);
-
         quantity++;
 
         // Atualiza o texto
-        this.upgradeQtdTMP.text = quantity.ToString();
-        upgradeCostTMP.text = "$ " + GetCurrentCost().ToString();
+        upgradeQtdTMP.text = quantity.ToString();
+        upgradeCostTMP.text = money.FormatMoney(GetCurrentCost());
 
         SaveManager.instance.SaveGame();
         ToastCreator.CreateToast("Novo upgrade adquirido!", "top-center");
     }
 
-    // Implementação correta de OnPointerEnter
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (upgradeImage != null)
@@ -91,12 +86,11 @@ public class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
     }
 
-    // Implementação correta de OnPointerExit
     public void OnPointerExit(PointerEventData eventData)
     {
         if (upgradeImage != null)
         {
-            upgradeImage.color = originalColor; // Restaura a cor original
+            upgradeImage.color = originalColor;
         }
     }
 
@@ -107,18 +101,18 @@ public class Upgrade : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             yield return new WaitForSeconds(1);
             if (quantity > 0)
             {
-                money.AddMoney(GetProductionPerSecond());
+                money.AddMoney(incomePerSecond * quantity);
             }
         }
     }
 
-    public int GetCurrentCost()
+    public double GetCurrentCost()
     {
-        return (int)(baseCost * Mathf.Pow(factor, quantity));
+        return baseCost * System.Math.Pow(factor, quantity);
     }
 
-    public float GetProductionPerSecond()
+    public double GetProductionPerSecond()
     {
-        return incomePerSecond * quantity;
+        return incomePerSecond;
     }
 }

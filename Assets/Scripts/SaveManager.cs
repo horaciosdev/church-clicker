@@ -1,17 +1,18 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
     // Chaves para identificar os valores salvos no PlayerPrefs
-    private const string TOTAL_MONEY_KEY = "TotalMoney";
-    private const string UPGRADE_QUANTITY_PREFIX = "UpgradeQuantity_"; // Usaremos um prefixo para salvar as quantidades dos upgrades
+    private const string TOTAL_MONEY_KEY = "TotalMoneyDouble";
+    private const string UPGRADE_QUANTITY_PREFIX = "UpgradeQuantity_";
     private const string LAST_SAVE_TIME_KEY = "LastSaveTime";
 
     // Referência ao script Money para acessar e modificar o total de money
     private Money money;
 
-    // Referência aos scripts de Upgrade (você precisará configurar isso no Inspector)
+    // Referência aos scripts de Upgrade
     public Upgrade[] upgrades;
 
     // Singleton para facilitar o acesso ao SaveManager de outros scripts
@@ -23,10 +24,7 @@ public class SaveManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-
-            // Garante que o GameObject está na raiz da hierarquia
-            transform.SetParent(null, false); // Substitui transform.parent = null
-
+            transform.SetParent(null, false);
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -56,7 +54,7 @@ public class SaveManager : MonoBehaviour
         // Salva o total de money
         if (money != null)
         {
-            PlayerPrefs.SetFloat(TOTAL_MONEY_KEY, money.tootalMoney);
+            PlayerPrefs.SetString(TOTAL_MONEY_KEY, money.totalMoney.ToString("G17")); // Usando G17 para máxima precisão
         }
 
         // Salva a quantidade de cada upgrade
@@ -69,80 +67,90 @@ public class SaveManager : MonoBehaviour
         }
 
         // Salva o timestamp atual
-        string currentTime = System.DateTime.UtcNow.ToBinary().ToString();
+        string currentTime = DateTime.UtcNow.ToBinary().ToString();
         PlayerPrefs.SetString(LAST_SAVE_TIME_KEY, currentTime);
 
-        // É importante chamar Save() para garantir que os dados sejam escritos no disco
         PlayerPrefs.Save();
     }
 
     // Função para carregar os dados do jogo
     public void LoadGame()
     {
-        // 1. Primeiro carregamos o timestamp do último save
+        // Carrega o timestamp do último save
         string lastSaveTimeString = PlayerPrefs.GetString(LAST_SAVE_TIME_KEY, string.Empty);
-        float offlineGains = 0f;
+        double offlineGains = 0.0;
 
-        // 2. Calculamos o tempo offline
+        // Calcula o tempo offline
         if (!string.IsNullOrEmpty(lastSaveTimeString))
         {
-            System.DateTime lastSaveTime = System.DateTime.FromBinary(long.Parse(lastSaveTimeString));
-            System.DateTime currentTime = System.DateTime.UtcNow;
-            double secondsElapsed = (currentTime - lastSaveTime).TotalSeconds;
-
-            // Limita o tempo offline máximo para 24 horas (86400 segundos)
-            secondsElapsed = Mathf.Min((float)secondsElapsed, 86400f);
-
-            // 3. Carregamos os upgrades primeiro, pois precisamos deles para calcular os ganhos offline
-            if (upgrades != null)
+            try
             {
-                foreach (Upgrade upgrade in upgrades)
+                DateTime lastSaveTime = DateTime.FromBinary(long.Parse(lastSaveTimeString));
+                DateTime currentTime = DateTime.UtcNow;
+                double secondsElapsed = (currentTime - lastSaveTime).TotalSeconds;
+
+                // Limita o tempo offline máximo para 24 horas (86400 segundos)
+                secondsElapsed = Math.Min(secondsElapsed, 86400.0);
+
+                // Carrega os upgrades primeiro, para calcular os ganhos offline
+                if (upgrades != null)
                 {
-                    // Carrega a quantidade de cada upgrade
-                    upgrade.quantity = PlayerPrefs.GetInt(UPGRADE_QUANTITY_PREFIX + upgrade.upgradeName, 0);
+                    foreach (Upgrade upgrade in upgrades)
+                    {
+                        // Carrega a quantidade de cada upgrade
+                        upgrade.quantity = PlayerPrefs.GetInt(UPGRADE_QUANTITY_PREFIX + upgrade.upgradeName, 0);
 
-                    // Calcula os ganhos offline deste upgrade
-                    float upgradeProduction = upgrade.GetProductionPerSecond() * upgrade.quantity;
-                    offlineGains += upgradeProduction * (float)secondsElapsed;
+                        // Calcula os ganhos offline deste upgrade
+                        double upgradeProduction = upgrade.GetProductionPerSecond() * upgrade.quantity;
+                        offlineGains += upgradeProduction * secondsElapsed;
 
-                    // Atualiza a UI do upgrade
-                    upgrade.upgradeQtdTMP.text = upgrade.quantity.ToString();
-                    upgrade.upgradeCostTMP.text = "$ " + upgrade.GetCurrentCost().ToString();
+                        // Atualiza a UI do upgrade
+                        upgrade.upgradeQtdTMP.text = upgrade.quantity.ToString();
+                        upgrade.upgradeCostTMP.text = money.FormatMoney(upgrade.GetCurrentCost());
+                    }
                 }
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("Erro ao processar timestamp: " + e.Message);
             }
         }
 
-        // 4. Carregamos e atualizamos o total de dízimo
+        // Carrega e atualiza o total de dinheiro
         if (money != null)
         {
-            // Carrega o valor base salvo
-            money.tootalMoney = PlayerPrefs.GetFloat(TOTAL_MONEY_KEY, 0f);
+            string savedMoney = PlayerPrefs.GetString(TOTAL_MONEY_KEY, "0");
+            if (double.TryParse(savedMoney, out double loadedMoney))
+            {
+                money.totalMoney = loadedMoney;
+            }
+            else
+            {
+                Debug.LogError("Erro ao carregar dinheiro!");
+                money.totalMoney = 0;
+            }
 
             // Adiciona os ganhos offline
             if (offlineGains > 0)
             {
-                money.tootalMoney += offlineGains;
-                ShowOfflineGainsMessage(offlineGains); // Você precisa criar esta função para mostrar a UI
+                money.AddMoney(offlineGains);
+                ShowOfflineGainsMessage(offlineGains);
             }
-
-            // Atualiza a UI
-            money.UpdateMoneyString();
         }
 
-        // 5. Inicia o salvamento automático
+        // Inicia o salvamento automático
         StartCoroutine(AutomaticSave());
 
         ToastCreator.CreateToast("Jogo Carregado!", "bottom-left");
     }
 
     // Função auxiliar para mostrar mensagem de ganhos offline
-    private void ShowOfflineGainsMessage(float gains)
+    private void ShowOfflineGainsMessage(double gains)
     {
-        // Aqui você pode implementar uma UI para mostrar os ganhos offline
-        ToastCreator.CreateToast($"Bem-vindo de volta! \n Você ganhou: \n ${gains:F2}", "top-center", 2f);
+        ToastCreator.CreateToast($"Bem-vindo de volta! \n Você ganhou: \n {money.FormatMoney(gains)}", "top-center", 2f);
     }
 
-    // Função para resetar os dados salvos (útil para testes)
+    // Função para resetar os dados salvos
     public void ResetSave()
     {
         PlayerPrefs.DeleteAll();
@@ -150,7 +158,7 @@ public class SaveManager : MonoBehaviour
         // Redefine os valores no script Money
         if (money != null)
         {
-            money.tootalMoney = 0f;
+            money.totalMoney = 0.0;
             money.UpdateMoneyString();
         }
 
@@ -161,13 +169,12 @@ public class SaveManager : MonoBehaviour
             {
                 upgrade.quantity = 0;
                 upgrade.upgradeQtdTMP.text = "0";
-                upgrade.upgradeCostTMP.text = "$ " + upgrade.GetCurrentCost().ToString();
+                upgrade.upgradeCostTMP.text = money.FormatMoney(upgrade.GetCurrentCost());
             }
         }
 
         SaveGame(); // Salva os valores resetados
         ToastCreator.CreateToast("Save Resetado!", "bottom-left");
-        LoadGame(); // Recarrega os valores padrão (já definidos acima)
     }
 
     IEnumerator AutomaticSave()
