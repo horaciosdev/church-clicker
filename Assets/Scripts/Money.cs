@@ -25,6 +25,6 @@ public class Money : MonoBehaviour
 
     public void UpdateMoneyString()
     {
-        totalMoneyStr.text = "D$ " + ((int)tootalMoney).ToString();
+        totalMoneyStr.text = "$ " + ((int)tootalMoney).ToString();
     }
 }
